@@ -12,9 +12,10 @@ import { NgModule } from '@angular/core';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TasksComponent } from './tasks.component';
 import { TasksRoutingModule } from './tasks-routing.module';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @NgModule({
-  declarations: [TasksComponent, TaskListComponent, CreateTaskComponent],
+  declarations: [TasksComponent, TaskListComponent, CreateTaskComponent, EditTaskComponent],
   imports: [
     CommonModule,
     MatTableModule,
