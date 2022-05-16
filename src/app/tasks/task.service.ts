@@ -1,5 +1,5 @@
+import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { Task } from './task.model';
 
 let tasks: Task[] = [
@@ -8,6 +8,19 @@ let tasks: Task[] = [
     title: 'Task #1',
     description: 'My first task',
     complete: false
+  },
+  {
+    id: 2,
+    title: 'Task #2',
+    description: 'Second Task',
+    complete: false,
+    due: new Date()
+  },
+  {
+    id: 3,
+    title: 'Completed Task',
+    description: 'a completed task',
+    complete: true
   }
 ];
 
@@ -19,5 +32,11 @@ export class TaskService {
 
   getAll(): Task[] {
     return tasks;
+  }
+
+  getAll$(): Observable<Task[]> {
+    return new Observable((subscriber) => {
+      subscriber.next(tasks);
+    });
   }
 }

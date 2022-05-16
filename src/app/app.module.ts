@@ -10,8 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
+import { TasksModule } from './tasks/tasks.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,7 @@ import { NgModule } from '@angular/core';
     AppRoutingModule,
     AboutModule,
     HomeModule,
+    TasksModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
@@ -27,7 +30,8 @@ import { NgModule } from '@angular/core';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatSliderModule
+    MatSliderModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

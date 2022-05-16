@@ -15,6 +15,6 @@ describe('TaskService', () => {
 
   it('should return a list of tasks', () => {
     let tasks = service.getAll();
-    expect(tasks.length).toBe(1);
+    expect(tasks.length).toBe(3);
   });
 });
