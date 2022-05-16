@@ -10,10 +10,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
+import { TaskFormComponent } from './shared/task-form/task-form.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TasksComponent } from './tasks.component';
 import { TasksRoutingModule } from './tasks-routing.module';
-import { TaskFormComponent } from './shared/task-form/task-form.component';
 
 @NgModule({
   declarations: [
