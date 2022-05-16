@@ -1,3 +1,21 @@
+$warning-color: rgba(223, 86, 86, 0.884);
+$due-soon-color: rgba(194, 143, 49, 0.753);
+
 table {
   width: 100%;
+}
+
+.overdue {
+  font-weight: bold;
+  color: $warning-color;
+}
+
+.due-soon {
+  font-weight: bold;
+  color: $due-soon-color;
+}
+
+.completed {
+  font-weight: bold;
+  color: grey;
 }

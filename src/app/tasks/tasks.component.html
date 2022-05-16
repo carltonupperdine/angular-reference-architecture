@@ -1,9 +1,14 @@
-<h1>Tasks</h1>
-<button
-  mat-flat-button
-  color="primary"
-  (click)="router.navigate(['tasks/create'])"
->
-  Create
-</button>
+<div class="header">
+  <h1>Tasks</h1>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="router.navigate(['tasks/create'])"
+  >
+    Create
+  </button>
+  <br />
+  Here you can view, create, edit and complete tasks.
+</div>
+
 <app-task-list [tasks]="tasks"></app-task-list>
