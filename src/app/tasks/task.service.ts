@@ -1,42 +1,54 @@
-import { Observable, Subject } from 'rxjs';
+import { CreateTaskModel } from './create-task/create-task-model';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Task } from './task.model';
-
-let tasks: Task[] = [
-  {
-    id: 1,
-    title: 'Task #1',
-    description: 'My first task',
-    complete: false
-  },
-  {
-    id: 2,
-    title: 'Task #2',
-    description: 'Second Task',
-    complete: false,
-    due: new Date()
-  },
-  {
-    id: 3,
-    title: 'Completed Task',
-    description: 'a completed task',
-    complete: true
-  }
-];
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  selectedTask$: Subject<Task> = new Subject<Task>();
+  private tasks: Task[] = [
+    {
+      id: 1,
+      title: 'Task #1',
+      description: 'My first task',
+      complete: false
+    },
+    {
+      id: 2,
+      title: 'Task #2',
+      description: 'Second Task',
+      complete: false,
+      due: new Date()
+    },
+    {
+      id: 3,
+      title: 'Completed Task',
+      description: 'a completed task',
+      complete: true
+    }
+  ];
 
   getAll(): Task[] {
-    return tasks;
+    return this.tasks;
   }
 
-  getAll$(): Observable<Task[]> {
+  create(model: CreateTaskModel): Observable<boolean> {
+    const task: Task = {
+      id: this.getPrimaryKey(),
+      title: model.title,
+      description: model.description,
+      due: model.due,
+      complete: false
+    };
+    this.tasks = [...this.tasks, task];
     return new Observable((subscriber) => {
-      subscriber.next(tasks);
+      return subscriber.next(true);
     });
+  }
+
+  private getPrimaryKey(): number {
+    const ids = this.tasks.map((t) => t.id);
+    return Math.max(...ids) + 1;
   }
 }

@@ -1,2 +1,9 @@
 <h1>Tasks</h1>
+<button
+  mat-flat-button
+  color="primary"
+  (click)="router.navigate(['tasks/create'])"
+>
+  Create
+</button>
 <app-task-list [tasks]="tasks"></app-task-list>

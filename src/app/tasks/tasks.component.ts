@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Task } from './task.model';
 import { TaskService } from './task.service';
 
@@ -9,8 +10,10 @@ import { TaskService } from './task.service';
 })
 export class TasksComponent {
   tasks: Task[] = [];
+  router: Router;
 
-  constructor(taskService: TaskService) {
+  constructor(taskService: TaskService, router: Router) {
     this.tasks = taskService.getAll();
+    this.router = router;
   }
 }
