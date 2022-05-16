@@ -12,4 +12,9 @@ describe('TaskService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should return a list of tasks', () => {
+    let tasks = service.getAll();
+    expect(tasks.length).toBe(1);
+  });
 });
