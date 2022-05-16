@@ -1,1 +1,6 @@
-<p>edit-task works!</p>
+<h1>Editing Task {{ task.id }}</h1>
+<app-task-form
+  [task]="this.task"
+  action="Update"
+  (submitted)="update()"
+></app-task-form>

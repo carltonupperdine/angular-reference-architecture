@@ -33,6 +33,10 @@ export class TaskService {
     return this.tasks;
   }
 
+  get(id: number): Task | undefined {
+    return this.tasks.find((t) => t.id === id);
+  }
+
   create(model: CreateTaskModel): Observable<boolean> {
     const task: Task = {
       id: this.getPrimaryKey(),
@@ -45,6 +49,14 @@ export class TaskService {
     return new Observable((subscriber) => {
       return subscriber.next(true);
     });
+  }
+
+  update(task: Task) {
+    const idx = this.tasks.findIndex((t) => t.id === task.id);
+
+    if (idx >= 0) {
+      this.tasks[idx] = task;
+    }
   }
 
   private getPrimaryKey(): number {

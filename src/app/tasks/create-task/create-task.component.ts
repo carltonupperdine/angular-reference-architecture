@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CreateTaskModel } from './create-task-model';
+import { EMPTY_TASK } from '../constants';
 import { Router } from '@angular/router';
 import { TaskService } from '../task.service';
 
@@ -17,9 +17,9 @@ export class CreateTaskComponent {
     this.router = router;
   }
 
-  model = new CreateTaskModel();
+  model = EMPTY_TASK;
 
-  onSubmit() {
+  create() {
     this.taskService.create(this.model).subscribe((success) => {
       if (success) {
         this.router.navigate(['tasks']);

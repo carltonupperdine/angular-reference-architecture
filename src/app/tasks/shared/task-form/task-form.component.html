@@ -1,13 +1,7 @@
-<h1>Create a new Task</h1>
-<app-task-form
-  action="Create"
-  [task]="this.model"
-  (submitted)="create()"
-></app-task-form>
-<!-- <form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="this.submitted.emit(this.task)">
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
-    <input matInput required [(ngModel)]="model.title" name="title" />
+    <input matInput required [(ngModel)]="task.title" name="title" />
   </mat-form-field>
   <br />
   <mat-form-field appearance="fill">
@@ -15,7 +9,7 @@
     <input
       matInput
       required
-      [(ngModel)]="model.description"
+      [(ngModel)]="task.description"
       name="description"
     />
   </mat-form-field>
@@ -25,7 +19,7 @@
     <input
       matInput
       [matDatepicker]="picker"
-      [(ngModel)]="model.due"
+      [(ngModel)]="task.due"
       name="due"
     />
     <mat-hint>DD/MM/YYYY</mat-hint>
@@ -33,5 +27,12 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <br />
-  <button mat-flat-button color="accent" type="submit">Create</button>
-</form> -->
+  <button
+    mat-flat-button
+    color="accent"
+    type="submit"
+    [disabled]="task.complete"
+  >
+    {{ action }}
+  </button>
+</form>

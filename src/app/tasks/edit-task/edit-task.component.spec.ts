@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { APP_BASE_HREF } from '@angular/common';
+import { AppModule } from '../../app.module';
 
 import { EditTaskComponent } from './edit-task.component';
 
@@ -8,7 +10,9 @@ describe('EditTaskComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EditTaskComponent]
+      imports: [AppModule],
+      declarations: [EditTaskComponent],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
     }).compileComponents();
   });
 
