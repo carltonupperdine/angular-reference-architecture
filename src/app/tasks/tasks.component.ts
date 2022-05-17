@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Task } from './task.model';
 import { TaskService } from './task.service';
@@ -9,15 +10,15 @@ import { TaskService } from './task.service';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent {
-  tasks: Task[] = [];
+  tasks$: Observable<Task[]>;
   router: Router;
 
   constructor(private taskService: TaskService, router: Router) {
-    this.tasks = taskService.getAll();
+    this.tasks$ = taskService.getAll$();
     this.router = router;
   }
 
-  saveChanges() {
-    this.taskService.saveChanges(this.tasks);
+  complete(id: number) {
+    this.taskService.complete(id);
   }
 }

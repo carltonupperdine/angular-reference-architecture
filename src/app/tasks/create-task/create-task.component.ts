@@ -20,10 +20,7 @@ export class CreateTaskComponent {
   model = EMPTY_TASK;
 
   create() {
-    this.taskService.create(this.model).subscribe((success) => {
-      if (success) {
-        this.router.navigate(['tasks']);
-      }
-    });
+    this.taskService.create(this.model);
+    this.router.navigate(['tasks']);
   }
 }

@@ -2,7 +2,11 @@
   <ng-container matColumnDef="complete">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let task">
-      <mat-checkbox [checked]="task.complete"> </mat-checkbox>
+      <mat-checkbox
+        [checked]="task.complete"
+        (change)="this.taskCompleted.emit(task.id)"
+      >
+      </mat-checkbox>
     </td>
   </ng-container>
   <ng-container matColumnDef="id">

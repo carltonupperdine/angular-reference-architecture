@@ -11,5 +11,7 @@
   Here you can view, create, edit and complete tasks.
 </div>
 
-<app-task-list [tasks]="tasks"></app-task-list>
-<button mat-flat-button color="primary" (click)="saveChanges()">Save</button>
+<app-task-list
+  [tasks]="(tasks$ | async) ?? []"
+  (taskCompleted)="(complete)"
+></app-task-list>
