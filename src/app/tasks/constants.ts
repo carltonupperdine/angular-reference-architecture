@@ -6,3 +6,5 @@ export const EMPTY_TASK: Task = {
   description: '',
   complete: false
 };
+
+export type TaskDueDateColors = 'completed' | 'overdue' | 'due-soon' | '';

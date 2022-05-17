@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from '../task.model';
+import { TaskDueDateColors } from '../constants';
 
 @Component({
   selector: 'app-task-list',
@@ -12,7 +13,7 @@ export class TaskListComponent {
 
   columnsToDisplay = ['complete', 'id', 'title', 'description', 'due'];
 
-  getColour(task: Task): string {
+  getColour(task: Task): TaskDueDateColors {
     if (!task.due) return '';
 
     if (task.complete) return 'completed';
