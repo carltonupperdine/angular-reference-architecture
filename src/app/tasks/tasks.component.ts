@@ -12,8 +12,12 @@ export class TasksComponent {
   tasks: Task[] = [];
   router: Router;
 
-  constructor(taskService: TaskService, router: Router) {
+  constructor(private taskService: TaskService, router: Router) {
     this.tasks = taskService.getAll();
     this.router = router;
+  }
+
+  saveChanges() {
+    this.taskService.saveChanges(this.tasks);
   }
 }

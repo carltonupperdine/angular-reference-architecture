@@ -59,6 +59,10 @@ export class TaskService {
     }
   }
 
+  saveChanges(tasks: Task[]) {
+    this.tasks = tasks;
+  }
+
   private getPrimaryKey(): number {
     const ids = this.tasks.map((t) => t.id);
     return Math.max(...ids) + 1;
