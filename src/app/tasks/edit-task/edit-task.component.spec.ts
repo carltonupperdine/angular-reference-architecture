@@ -4,7 +4,6 @@ import { EditTaskComponent } from './edit-task.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TaskService } from '../task.service';
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 
 describe('EditTaskComponent', () => {
   let component: EditTaskComponent;
@@ -21,7 +20,6 @@ describe('EditTaskComponent', () => {
     };
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [],
       providers: [
         EditTaskComponent,
         { provide: APP_BASE_HREF, useValue: '/' },
@@ -29,7 +27,11 @@ describe('EditTaskComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            params: of({ id: 1 })
+            snapshot: {
+              params: {
+                id: 1
+              }
+            }
           }
         }
       ]
@@ -38,6 +40,7 @@ describe('EditTaskComponent', () => {
 
   beforeEach(() => {
     component = TestBed.inject(EditTaskComponent);
+    component.ngOnInit();
   });
 
   it('should create', () => {
