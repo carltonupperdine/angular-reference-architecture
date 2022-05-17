@@ -14,7 +14,11 @@ export class TaskListComponent {
 
   columnsToDisplay = ['complete', 'id', 'title', 'description', 'due'];
 
-  constructor(private dateUtility: DateUtility) {}
+  private dateUtility: DateUtility;
+
+  constructor(dateUtility: DateUtility) {
+    this.dateUtility = dateUtility;
+  }
 
   getColour(task: Task): TaskDueDateColors {
     if (task.due) {
