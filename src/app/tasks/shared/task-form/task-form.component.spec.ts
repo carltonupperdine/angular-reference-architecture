@@ -1,24 +1,27 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TaskFormComponent } from './task-form.component';
 
 describe('TaskFormComponent', () => {
   let component: TaskFormComponent;
-  let fixture: ComponentFixture<TaskFormComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TaskFormComponent]
-    }).compileComponents();
-  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TaskFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new TaskFormComponent();
+    component.task = {
+      id: 1066,
+      title: 'big task',
+      description: 'time to procrastinate',
+      complete: false
+    };
+
+    component.ngOnInit();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have correct form values', () => {
+    expect(component.title.value).toBe('big task');
+    expect(component.description.value).toBe('time to procrastinate');
+    expect(component.due.value).toBeUndefined();
   });
 });
