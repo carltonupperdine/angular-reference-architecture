@@ -7,4 +7,9 @@ export const EMPTY_TASK: Task = {
   complete: false
 };
 
-export type TaskDueDateColors = 'completed' | 'overdue' | 'due-soon' | '';
+export type TaskDueDateColors =
+  | 'completed'
+  | 'overdue'
+  | 'due-soon'
+  | 'not-due'
+  | '';

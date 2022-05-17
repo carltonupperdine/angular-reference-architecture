@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DateUtility } from '../shared/date-utility';
 import { Task } from '../task.model';
 import { TaskDueDateColors } from '../constants';
 
@@ -13,21 +14,25 @@ export class TaskListComponent {
 
   columnsToDisplay = ['complete', 'id', 'title', 'description', 'due'];
 
+  constructor(private dateUtility: DateUtility) {}
+
   getColour(task: Task): TaskDueDateColors {
-    if (!task.due) return '';
+    if (task.due) {
+      const daysRemaining = this.dateUtility.getDaysRemaining(task.due);
 
-    if (task.complete) return 'completed';
+      if (task.complete) {
+        return 'completed';
+      }
 
-    const overdue = task.due < new Date();
-    if (overdue) return 'overdue';
+      if (daysRemaining <= 0) {
+        return 'overdue';
+      }
 
-    const ONE_DAY = 1000 * 60 * 60 * 24;
-    const daysRemaining =
-      Math.floor(task.due.getMilliseconds() - new Date().getMilliseconds()) /
-      ONE_DAY;
+      if (daysRemaining <= 7) {
+        return 'due-soon';
+      }
 
-    if (daysRemaining < 7) {
-      return 'due-soon';
+      return 'not-due';
     }
 
     return '';
