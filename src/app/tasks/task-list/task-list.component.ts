@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from '../task.model';
 
 @Component({
@@ -8,6 +8,8 @@ import { Task } from '../task.model';
 })
 export class TaskListComponent {
   @Input() tasks: Task[] = [];
+  @Output() taskCompleted = new EventEmitter<number>();
+
   columnsToDisplay = ['complete', 'id', 'title', 'description', 'due'];
 
   getColour(task: Task): string {

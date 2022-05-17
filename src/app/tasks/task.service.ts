@@ -1,6 +1,6 @@
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CreateTaskModel } from './create-task/create-task-model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Task } from './task.model';
 
 @Injectable({
@@ -29,15 +29,17 @@ export class TaskService {
     }
   ];
 
-  getAll(): Task[] {
-    return this.tasks;
+  private tasks$ = new BehaviorSubject(this.tasks);
+
+  getAll$(): Observable<Task[]> {
+    return this.tasks$.asObservable();
   }
 
   get(id: number): Task | undefined {
     return this.tasks.find((t) => t.id === id);
   }
 
-  create(model: CreateTaskModel): Observable<boolean> {
+  create(model: CreateTaskModel) {
     const task: Task = {
       id: this.getPrimaryKey(),
       title: model.title,
@@ -45,18 +47,23 @@ export class TaskService {
       due: model.due,
       complete: false
     };
-    this.tasks = [...this.tasks, task];
-    return new Observable((subscriber) => {
-      return subscriber.next(true);
-    });
+    this.tasks$.next([...this.tasks, task]);
   }
 
   update(task: Task) {
-    const idx = this.tasks.findIndex((t) => t.id === task.id);
+    this.tasks$.subscribe((tasks) => {
+      const idx = tasks.findIndex((t) => t.id === task.id);
+      tasks[idx] = task;
+      this.tasks$.next(tasks);
+    });
+  }
 
-    if (idx >= 0) {
-      this.tasks[idx] = task;
-    }
+  complete(id: number) {
+    this.tasks$.subscribe((tasks) => {
+      const idx = tasks.findIndex((task) => task.id === id);
+      tasks[idx].complete = true;
+      this.tasks$.next(tasks);
+    });
   }
 
   private getPrimaryKey(): number {

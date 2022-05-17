@@ -11,4 +11,7 @@
   Here you can view, create, edit and complete tasks.
 </div>
 
-<app-task-list [tasks]="tasks"></app-task-list>
+<app-task-list
+  [tasks]="(tasks$ | async) ?? []"
+  (taskCompleted)="(complete)"
+></app-task-list>
