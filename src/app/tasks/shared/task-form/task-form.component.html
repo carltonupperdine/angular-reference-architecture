@@ -1,27 +1,17 @@
-<form (ngSubmit)="this.submitted.emit(this.task)">
+<form (ngSubmit)="submit()">
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
-    <input matInput required [(ngModel)]="task.title" name="title" />
+    <input matInput [formControl]="title" />
   </mat-form-field>
   <br />
   <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
-    <input
-      matInput
-      required
-      [(ngModel)]="task.description"
-      name="description"
-    />
+    <input matInput [formControl]="description" />
   </mat-form-field>
   <br />
   <mat-form-field appearance="fill">
     <mat-label>Due Date</mat-label>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      [(ngModel)]="task.due"
-      name="due"
-    />
+    <input matInput [matDatepicker]="picker" [formControl]="due" />
     <mat-hint>DD/MM/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
