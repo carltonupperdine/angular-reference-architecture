@@ -1,5 +1,5 @@
-import { Actions, ActionTypes } from './actions';
-import { taskAdapter, initialState, State } from './state';
+import { ActionTypes, Actions } from './actions';
+import { State, initialState, taskAdapter } from './state';
 
 export function taskReducer(state = initialState, action: Actions): State {
   switch (action.type) {

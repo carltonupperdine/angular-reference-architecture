@@ -1,9 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { APP_BASE_HREF } from '@angular/common';
-import { AppModule } from '../../app.module';
 import { CreateTaskComponent } from './create-task.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TaskService } from '../task.service';
+import { TestBed } from '@angular/core/testing';
 
 describe('CreateTaskComponent', () => {
   let component: CreateTaskComponent;

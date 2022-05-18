@@ -7,8 +7,8 @@ import { HomeModule } from './home/home.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
-import { TasksModule } from './tasks/tasks.module';
 import { StoreModule } from './store/store.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @NgModule({
   declarations: [AppComponent],

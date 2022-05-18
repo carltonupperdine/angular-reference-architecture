@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
+import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { TaskStoreEffects } from './effects';
 import { taskReducer } from './reducer';
@@ -12,6 +12,6 @@ import { taskReducer } from './reducer';
     StoreModule.forFeature('tasks', taskReducer),
     EffectsModule.forFeature([TaskStoreEffects])
   ],
-  providers: [TaskStoreEffects]
+  providers: []
 })
 export class TasksModule {}

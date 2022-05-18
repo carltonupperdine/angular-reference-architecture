@@ -1,4 +1,5 @@
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
+
 import { Task } from 'src/app/tasks/task.model';
 
 export const taskAdapter: EntityAdapter<Task> = createEntityAdapter<Task>({

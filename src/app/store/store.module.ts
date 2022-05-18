@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TasksModule } from './tasks/tasks.module';
-import { StoreModule as NgRxStoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { NgModule } from '@angular/core';
+import { StoreModule as NgRxStoreModule } from '@ngrx/store';
+import { TasksModule } from './tasks/tasks.module';
 
 @NgModule({
   declarations: [],
