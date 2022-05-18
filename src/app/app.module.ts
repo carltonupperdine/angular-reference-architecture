@@ -8,7 +8,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
 import { TasksModule } from './tasks/tasks.module';
-import { StoreModule } from '@ngrx/store';
+import { StoreModule } from './store/store.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +21,7 @@ import { StoreModule } from '@ngrx/store';
     BrowserAnimationsModule,
     LayoutModule,
     MaterialModule,
-    StoreModule.forRoot({}, {})
+    StoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
