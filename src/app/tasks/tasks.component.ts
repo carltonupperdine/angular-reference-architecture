@@ -33,7 +33,7 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  complete(id: number) {
-    // this.taskService.complete(id);
-  }
+  // complete(id: number) {
+  //   this.taskService.complete(id);
+  // }
 }

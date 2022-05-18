@@ -14,6 +14,7 @@ export const getIsLoading = (state: State): boolean => state.isLoading ?? false;
 export const selectTaskState: MemoizedSelector<object, State> =
   createFeatureSelector<State>('Tasks');
 
+// eslint-disable-next-line no-unused-vars
 export const selectAllTasks: (state: object) => Task[] =
   taskAdapter.getSelectors(selectTaskState).selectAll;
 
