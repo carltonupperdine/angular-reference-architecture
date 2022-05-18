@@ -1,31 +1,12 @@
-import { ActionTypes, Actions } from './actions';
-import { State, initialState, taskAdapter } from './state';
+import * as TaskActions from './actions';
 
-export function taskReducer(state = initialState, action: Actions): State {
-  switch (action.type) {
-    case ActionTypes.LOAD_REQUEST: {
-      return {
-        ...state,
-        isLoading: true,
-        error: null
-      };
-    }
-    case ActionTypes.LOAD_SUCCESS: {
-      return taskAdapter.setAll(action.payload.items, {
-        ...state,
-        isLoading: false,
-        error: null
-      });
-    }
-    case ActionTypes.LOAD_FAILURE: {
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload.error
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-}
+import { State, initialState, taskAdapter } from './state';
+import { createReducer, on } from '@ngrx/store';
+
+export const taskReducer = createReducer(
+  initialState,
+  on(
+    TaskActions.tasksLoaded,
+    (state, { items }): State => taskAdapter.setAll(items, { ...state })
+  )
+);

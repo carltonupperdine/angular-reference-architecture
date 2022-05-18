@@ -9,11 +9,13 @@ export const taskAdapter: EntityAdapter<Task> = createEntityAdapter<Task>({
 });
 
 export interface State extends EntityState<Task> {
+  tasks: Task[];
   isLoading?: boolean;
   error?: any;
 }
 
 export const initialState: State = taskAdapter.getInitialState({
+  tasks: [],
   isLoading: false,
   error: null
 });
