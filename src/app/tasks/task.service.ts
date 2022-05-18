@@ -1,4 +1,5 @@
 import { BehaviorSubject, Observable } from 'rxjs';
+
 import { CreateTaskModel } from './create-task/create-task-model';
 import { Injectable } from '@angular/core';
 import { Task } from './task.model';
@@ -31,7 +32,7 @@ export class TaskService {
 
   private tasks$ = new BehaviorSubject(this.tasks);
 
-  getAll$(): Observable<Task[]> {
+  getAll(): Observable<Task[]> {
     return this.tasks$.asObservable();
   }
 
