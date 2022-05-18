@@ -3,23 +3,26 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AppModule } from '../../app.module';
 import { CreateTaskComponent } from './create-task.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TaskService } from '../task.service';
 
 describe('CreateTaskComponent', () => {
   let component: CreateTaskComponent;
-  let fixture: ComponentFixture<CreateTaskComponent>;
 
   beforeEach(async () => {
+    const taskService = new TaskService();
+
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, AppModule],
-      declarations: [CreateTaskComponent],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+      imports: [RouterTestingModule],
+      providers: [
+        CreateTaskComponent,
+        { provide: APP_BASE_HREF, useValue: '/' },
+        { provide: TaskService, useValue: taskService }
+      ]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateTaskComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(CreateTaskComponent);
   });
 
   it('should create', () => {

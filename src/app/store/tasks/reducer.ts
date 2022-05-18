@@ -1,7 +1,7 @@
 import { Actions, ActionTypes } from './actions';
 import { taskAdapter, initialState, State } from './state';
 
-export function featureReducer(state = initialState, action: Actions): State {
+export function taskReducer(state = initialState, action: Actions): State {
   switch (action.type) {
     case ActionTypes.LOAD_REQUEST: {
       return {

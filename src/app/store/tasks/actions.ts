@@ -4,7 +4,8 @@ import { Task } from 'src/app/tasks/task.model';
 export enum ActionTypes {
   LOAD_REQUEST = '[Tasks] Load Request',
   LOAD_FAILURE = '[Tasks] Load Failure',
-  LOAD_SUCCESS = '[Tasks] Load Success'
+  LOAD_SUCCESS = '[Tasks] Load Success',
+  TASK_COMPLETE = '[Tasks] Task Complete'
 }
 
 export class LoadRequestAction implements Action {
@@ -19,6 +20,11 @@ export class LoadFailureAction implements Action {
 export class LoadSuccessAction implements Action {
   readonly type = ActionTypes.LOAD_SUCCESS;
   constructor(public payload: { items: Task[] }) {}
+}
+
+export class TaskCompleteAction implements Action {
+  readonly type = ActionTypes.TASK_COMPLETE;
+  constructor(public payload: { id: number }) {}
 }
 
 export type Actions = LoadRequestAction | LoadFailureAction | LoadSuccessAction;

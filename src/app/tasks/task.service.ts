@@ -58,7 +58,7 @@ export class TaskService {
     });
   }
 
-  complete(id: number) {
+  complete(id: number): void {
     this.tasks$.subscribe((tasks) => {
       const idx = tasks.findIndex((task) => task.id === id);
       tasks[idx].complete = true;
