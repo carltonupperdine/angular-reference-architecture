@@ -1,5 +1,5 @@
 import { Actions, ActionTypes } from './actions';
-import { featureAdapter, initialState, State } from './state';
+import { taskAdapter, initialState, State } from './state';
 
 export function featureReducer(state = initialState, action: Actions): State {
   switch (action.type) {
@@ -11,7 +11,7 @@ export function featureReducer(state = initialState, action: Actions): State {
       };
     }
     case ActionTypes.LOAD_SUCCESS: {
-      return featureAdapter.setAll(action.payload.items, {
+      return taskAdapter.setAll(action.payload.items, {
         ...state,
         isLoading: false,
         error: null
