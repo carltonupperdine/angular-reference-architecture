@@ -8,6 +8,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
 import { TasksModule } from './tasks/tasks.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { TasksModule } from './tasks/tasks.module';
     TasksModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MaterialModule
+    MaterialModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
