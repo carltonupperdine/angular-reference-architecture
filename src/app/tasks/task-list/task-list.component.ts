@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { DateUtility } from '../shared/date-utility';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Task } from '../task.model';
 import { TaskDueDateColors } from '../constants';
 
@@ -14,10 +16,10 @@ export class TaskListComponent {
 
   columnsToDisplay = ['complete', 'id', 'title', 'description', 'due'];
 
-  private dateUtility: DateUtility;
+  constructor(private dateUtility: DateUtility) {}
 
-  constructor(dateUtility: DateUtility) {
-    this.dateUtility = dateUtility;
+  changed(event: MatCheckboxChange, task: Task) {
+    this.taskCompleted.emit(task.id);
   }
 
   getColour(task: Task): TaskDueDateColors {

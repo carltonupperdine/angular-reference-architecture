@@ -3,6 +3,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { TaskEffects } from './effects';
+import { TaskFacade } from './facade';
 import { taskReducer } from './reducer';
 
 @NgModule({
@@ -12,6 +13,6 @@ import { taskReducer } from './reducer';
     StoreModule.forFeature('Tasks', taskReducer),
     EffectsModule.forFeature([TaskEffects])
   ],
-  providers: []
+  providers: [TaskFacade]
 })
 export class TasksModule {}

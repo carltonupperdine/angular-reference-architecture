@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, catchError, map } from 'rxjs';
 
 import { Injectable } from '@angular/core';
-import { TaskService } from 'src/app/tasks/task.service';
+import { TaskService } from '../../tasks/task.service';
 
 @Injectable()
 export class TaskEffects {

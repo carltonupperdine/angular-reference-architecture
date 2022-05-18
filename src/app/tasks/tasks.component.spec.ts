@@ -2,24 +2,29 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { RouterTestingModule } from '@angular/router/testing';
+import { TaskFacade } from '../store/tasks/facade';
 import { TasksComponent } from './tasks.component';
 
 describe('TasksComponent', () => {
   let component: TasksComponent;
-  let fixture: ComponentFixture<TasksComponent>;
 
   beforeEach(async () => {
+    const facadeMock = jest.mock<TaskFacade>('../store/tasks/facade');
+
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [TasksComponent],
-      providers: [provideMockStore(), MockStore]
+      providers: [
+        provideMockStore(),
+        MockStore,
+        TasksComponent,
+        { provide: TaskFacade, useValue: facadeMock }
+      ]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TasksComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(TasksComponent);
   });
 
   it('should create', () => {
