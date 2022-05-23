@@ -1,5 +1,10 @@
+import {
+  newTask,
+  taskCompleted,
+  taskUpdated,
+  tasksLoadRequested
+} from './task.actions';
 import { selectAllTasks, selectTaskById } from './task.selectors';
-import { taskCompleted, taskUpdated, tasksLoadRequested } from './task.actions';
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -19,6 +24,10 @@ export class TaskFacade {
 
   complete(id: number) {
     this.store.dispatch(taskCompleted({ id: id }));
+  }
+
+  create(task: { title: string; description: string; due: Date | null }) {
+    this.store.dispatch(newTask({ task: task }));
   }
 
   update(task: Task) {

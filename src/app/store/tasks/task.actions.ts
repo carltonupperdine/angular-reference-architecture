@@ -6,7 +6,9 @@ export enum ActionTypes {
   LOAD_TASKS_REQUESTED = '[Tasks] Load Tasks Requested',
   LOAD_TASKS_SUCCESS = '[Tasks] Load Tasks Success',
   TASK_COMPLETED = '[Tasks] Task Completed',
-  TASK_UPDATED = '[Tasks] Task Updated'
+  TASK_UPDATED = '[Tasks] Task Updated',
+  NEW_TASK = '[Tasks] New Task',
+  TASK_CREATED = '[Tasks] Task Created'
 }
 
 export const tasksLoadRequested = createAction(
@@ -25,5 +27,15 @@ export const taskCompleted = createAction(
 
 export const taskUpdated = createAction(
   ActionTypes.TASK_UPDATED,
+  props<{ task: Task }>()
+);
+
+export const newTask = createAction(
+  ActionTypes.NEW_TASK,
+  props<{ task: { title: string; description: string; due?: Date | null } }>()
+);
+
+export const taskCreated = createAction(
+  ActionTypes.TASK_CREATED,
   props<{ task: Task }>()
 );

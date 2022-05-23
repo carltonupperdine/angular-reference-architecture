@@ -6,7 +6,6 @@ describe('TaskFormComponent', () => {
   beforeEach(() => {
     component = new TaskFormComponent();
     component.task = {
-      id: 1066,
       title: 'big task',
       description: 'time to procrastinate',
       complete: false

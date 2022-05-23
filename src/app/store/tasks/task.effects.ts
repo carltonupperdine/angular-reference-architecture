@@ -1,6 +1,6 @@
-import { ActionTypes, tasksLoaded } from './task.actions';
+import { ActionTypes, newTask, taskCreated, tasksLoaded } from './task.actions';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY, catchError, map } from 'rxjs';
+import { EMPTY, catchError, map, switchMap } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 import { TaskService } from '../../tasks/task.service';
@@ -15,6 +15,17 @@ export class TaskEffects {
           .getAll()
           .pipe(map((tasks) => tasksLoaded({ items: tasks }))),
       catchError(() => EMPTY)
+    );
+  });
+
+  createTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(newTask),
+      switchMap((action) =>
+        this.taskService
+          .create(action.task)
+          .pipe(map((task) => taskCreated({ task })))
+      )
     );
   });
 

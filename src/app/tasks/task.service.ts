@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 import { CreateTaskModel } from './create-task/create-task-model';
 import { Injectable } from '@angular/core';
@@ -40,15 +40,12 @@ export class TaskService {
     return this.tasks.find((t) => t.id === id);
   }
 
-  create(model: CreateTaskModel) {
-    const task: Task = {
+  create(model: CreateTaskModel): Observable<Task> {
+    return of({
+      ...model,
       id: this.getPrimaryKey(),
-      title: model.title,
-      description: model.description,
-      due: model.due,
       complete: false
-    };
-    this.tasks$.next([...this.tasks, task]);
+    });
   }
 
   update(task: Task) {

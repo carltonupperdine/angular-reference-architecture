@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { EMPTY_TASK } from '../constants';
 import { Router } from '@angular/router';
-import { TaskService } from '../task.service';
+import { TaskFacade } from '../../store/tasks';
 
 @Component({
   selector: 'app-create-task',
@@ -9,18 +8,16 @@ import { TaskService } from '../task.service';
   styleUrls: ['./create-task.component.scss']
 })
 export class CreateTaskComponent {
-  private readonly taskService: TaskService;
-  public router: Router;
+  model = {
+    title: '',
+    description: '',
+    due: null
+  };
 
-  constructor(taskService: TaskService, router: Router) {
-    this.taskService = taskService;
-    this.router = router;
-  }
-
-  model = EMPTY_TASK;
+  constructor(private facade: TaskFacade, private router: Router) {}
 
   create() {
-    this.taskService.create(this.model);
+    this.facade.create(this.model);
     this.router.navigate(['tasks']);
   }
 }

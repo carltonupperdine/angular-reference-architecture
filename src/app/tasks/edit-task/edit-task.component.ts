@@ -12,13 +12,17 @@ import { TaskFacade } from '../../store/tasks';
 export class EditTaskComponent {
   id$ = this.route.params.pipe(map((params) => +params['id']));
   task$ = this.id$.pipe(mergeMap((id) => this.facade.find(id)));
-  title$ = this.task$.pipe(map((task) => `Editing Task ${task?.id}`));
+  title = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private facade: TaskFacade
-  ) {}
+  ) {
+    this.task$.subscribe((task) => {
+      this.title = `Editing Task ${task?.id}`;
+    });
+  }
 
   update() {
     this.task$.subscribe((task) => {
