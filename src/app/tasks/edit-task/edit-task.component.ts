@@ -3,7 +3,7 @@ import { map, mergeMap } from 'rxjs';
 
 import { Component } from '@angular/core';
 import { TaskFacade } from '../../store/tasks';
-import { TaskModel } from '../shared/models';
+import { WritableTask } from '../shared/models';
 
 @Component({
   selector: 'app-edit-task',
@@ -25,10 +25,11 @@ export class EditTaskComponent {
     });
   }
 
-  taskUpdated(task: TaskModel) {
-    this.id$.subscribe((id) => {
-      this.facade.update({ ...task, id });
-      this.router.navigate(['tasks']);
+  taskUpdated(editedTask: WritableTask) {
+    this.facade.update({
+      ...editedTask,
+      id: +this.route.snapshot.params['id']
     });
+    this.router.navigate(['tasks']);
   }
 }

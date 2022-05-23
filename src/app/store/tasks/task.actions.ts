@@ -1,4 +1,4 @@
-import { Task, TaskModel } from 'src/app/tasks/shared/models';
+import { ModifiedTask, Task, TaskModel } from 'src/app/tasks/shared/models';
 import { createAction, props } from '@ngrx/store';
 
 export enum ActionTypes {
@@ -26,7 +26,7 @@ export const taskCompleted = createAction(
 
 export const taskUpdated = createAction(
   ActionTypes.TASK_UPDATED,
-  props<{ task: Task }>()
+  props<{ task: ModifiedTask }>()
 );
 
 export const newTask = createAction(

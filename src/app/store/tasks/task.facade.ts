@@ -1,4 +1,4 @@
-import { TaskModel, TaskModelWithId } from 'src/app/tasks/shared/models';
+import { ModifiedTask, TaskModel } from 'src/app/tasks/shared/models';
 import {
   newTask,
   taskCompleted,
@@ -30,7 +30,7 @@ export class TaskFacade {
     this.store.dispatch(newTask({ task: task }));
   }
 
-  update(task: TaskModelWithId) {
+  update(task: ModifiedTask) {
     this.store.dispatch(taskUpdated({ task }));
   }
 }

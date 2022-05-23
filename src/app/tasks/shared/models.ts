@@ -6,13 +6,19 @@ export interface Task {
   complete: boolean;
 }
 
+export interface WritableTask {
+  title: string;
+  description: string;
+  due?: Date;
+}
+
+export interface ModifiedTask extends WritableTask {
+  id: number;
+}
+
 export interface TaskModel {
   title: string;
   description: string;
   due?: Date;
   complete: boolean;
-}
-
-export interface TaskModelWithId extends TaskModel {
-  id: number;
 }

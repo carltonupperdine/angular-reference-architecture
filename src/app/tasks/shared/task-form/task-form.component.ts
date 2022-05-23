@@ -1,9 +1,8 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { TaskModel, WritableTask } from '../models';
 
-import { EMPTY_TASK } from '../../constants';
 import { EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { TaskModel } from '../models';
 
 @Component({
   selector: 'app-task-form',
@@ -12,8 +11,8 @@ import { TaskModel } from '../models';
 })
 export class TaskFormComponent implements OnInit {
   @Input() action: string = 'Create';
-  @Input() task: TaskModel | null | undefined = EMPTY_TASK;
-  @Output() submitted = new EventEmitter<TaskModel>();
+  @Input() task: WritableTask | undefined;
+  @Output() submitted = new EventEmitter<WritableTask>();
 
   title = new FormControl('');
   description = new FormControl('');

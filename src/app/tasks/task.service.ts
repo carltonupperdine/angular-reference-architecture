@@ -1,5 +1,5 @@
 import { BehaviorSubject, Observable, filter, map, of } from 'rxjs';
-import { Task, TaskModel, TaskModelWithId } from './shared/models';
+import { Task, TaskModel } from './shared/models';
 
 import { Injectable } from '@angular/core';
 

@@ -7,8 +7,7 @@ describe('TaskFormComponent', () => {
     component = new TaskFormComponent();
     component.task = {
       title: 'big task',
-      description: 'time to procrastinate',
-      complete: false
+      description: 'time to procrastinate'
     };
 
     component.ngOnInit();

@@ -1,6 +1,6 @@
 <h1>{{ this.title }}</h1>
 <app-task-form
-  [task]="this.task$ | async"
+  [task]="(this.task$ | async) ?? undefined"
   action="Update"
   (submitted)="taskUpdated($event)"
 ></app-task-form>
