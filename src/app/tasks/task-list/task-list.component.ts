@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { DateUtility } from '../shared/date-utility';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { Task } from '../shared/models';
 import { TaskDueDateColors } from '../constants';
-import { TaskViewModel } from '../shared/models';
 
 @Component({
   selector: 'app-task-list',
@@ -11,18 +11,18 @@ import { TaskViewModel } from '../shared/models';
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent {
-  @Input() tasks: TaskViewModel[] = [];
+  @Input() tasks: Task[] = [];
   @Output() taskCompleted = new EventEmitter<number>();
 
   columnsToDisplay = ['complete', 'id', 'title', 'description', 'due'];
 
   constructor(private dateUtility: DateUtility) {}
 
-  changed(event: MatCheckboxChange, task: TaskViewModel) {
+  changed(event: MatCheckboxChange, task: Task) {
     this.taskCompleted.emit(task.id);
   }
 
-  getColour(task: TaskViewModel): TaskDueDateColors {
+  getColour(task: Task): TaskDueDateColors {
     if (task.due) {
       const daysRemaining = this.dateUtility.getDaysRemaining(task.due);
 

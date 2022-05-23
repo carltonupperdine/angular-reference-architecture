@@ -5,7 +5,7 @@ import {
 } from '@ngrx/store';
 import { State, taskAdapter } from './task.state';
 
-import { TaskViewModel } from 'src/app/tasks/shared/models';
+import { Task } from 'src/app/tasks/shared/models';
 
 export const getError = (state: State): any => state.error;
 
@@ -15,11 +15,11 @@ export const selectTaskState: MemoizedSelector<object, State> =
   createFeatureSelector<State>('Tasks');
 
 // eslint-disable-next-line no-unused-vars
-export const selectAllTasks: (state: object) => TaskViewModel[] =
+export const selectAllTasks: (state: object) => Task[] =
   taskAdapter.getSelectors(selectTaskState).selectAll;
 
 export const selectTaskById = (id: number) =>
-  createSelector(selectAllTasks, (allTasks: TaskViewModel[]) => {
+  createSelector(selectAllTasks, (allTasks: Task[]) => {
     if (allTasks) {
       return allTasks.find((p) => p.id === id);
     } else {
