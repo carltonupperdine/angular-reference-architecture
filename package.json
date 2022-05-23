@@ -8,7 +8,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +41,7 @@
     "@angular/cli": "~13.3.5",
     "@angular/compiler-cli": "~13.3.0",
     "@briebug/jest-schematic": "^4.0.0",
+    "@cypress/schematic": "^1.7.0",
     "@ngrx/effects": "^13.2.0",
     "@ngrx/entity": "^13.2.0",
     "@ngrx/store-devtools": "^13.2.0",
@@ -45,8 +49,10 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.17.0",
     "@typescript-eslint/parser": "5.17.0",
+    "cypress": "latest",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-ngrx": "^2.0.0",
     "eslint-plugin-prettier": "^4.0.0",
