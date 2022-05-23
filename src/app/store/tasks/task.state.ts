@@ -1,15 +1,16 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 
-import { Task } from 'src/app/tasks/task.model';
+import { TaskViewModel } from 'src/app/tasks/shared/models';
 
-export const taskAdapter: EntityAdapter<Task> = createEntityAdapter<Task>({
-  selectId: (model) => model.id,
-  sortComparer: (a: Task, b: Task): number =>
-    b.id.toString().localeCompare(a.id.toString())
-});
+export const taskAdapter: EntityAdapter<TaskViewModel> =
+  createEntityAdapter<TaskViewModel>({
+    selectId: (model) => model.id,
+    sortComparer: (a: TaskViewModel, b: TaskViewModel): number =>
+      b.id.toString().localeCompare(a.id.toString())
+  });
 
-export interface State extends EntityState<Task> {
-  tasks: Task[];
+export interface State extends EntityState<TaskViewModel> {
+  tasks: TaskViewModel[];
   isLoading?: boolean;
   error?: any;
 }

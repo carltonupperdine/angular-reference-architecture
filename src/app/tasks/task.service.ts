@@ -1,14 +1,13 @@
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, filter, map, of } from 'rxjs';
+import { TaskModel, TaskModelWithId, TaskViewModel } from './shared/models';
 
-import { CreateTaskModel } from './create-task/create-task-model';
 import { Injectable } from '@angular/core';
-import { Task } from './task.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private tasks: Task[] = [
+  private tasks: TaskViewModel[] = [
     {
       id: 1,
       title: 'Task #1',
@@ -32,15 +31,15 @@ export class TaskService {
 
   private tasks$ = new BehaviorSubject(this.tasks);
 
-  getAll(): Observable<Task[]> {
+  getAll(): Observable<TaskViewModel[]> {
     return this.tasks$.asObservable();
   }
 
-  get(id: number): Task | undefined {
+  get(id: number): TaskViewModel | undefined {
     return this.tasks.find((t) => t.id === id);
   }
 
-  create(model: CreateTaskModel): Observable<Task> {
+  create(model: TaskModel): Observable<TaskViewModel> {
     return of({
       ...model,
       id: this.getPrimaryKey(),
@@ -48,7 +47,7 @@ export class TaskService {
     });
   }
 
-  update(task: Task) {
+  update(task: TaskViewModel) {
     this.tasks$.subscribe((tasks) => {
       const idx = tasks.findIndex((t) => t.id === task.id);
       tasks[idx] = task;

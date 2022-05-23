@@ -1,3 +1,4 @@
+import { TaskModel, TaskModelWithId } from 'src/app/tasks/shared/models';
 import {
   newTask,
   taskCompleted,
@@ -8,7 +9,6 @@ import { selectAllTasks, selectTaskById } from './task.selectors';
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Task } from 'src/app/tasks/task.model';
 
 @Injectable()
 export class TaskFacade {
@@ -26,11 +26,11 @@ export class TaskFacade {
     this.store.dispatch(taskCompleted({ id: id }));
   }
 
-  create(task: { title: string; description: string; due: Date | null }) {
+  create(task: TaskModel) {
     this.store.dispatch(newTask({ task: task }));
   }
 
-  update(task: Task) {
+  update(task: TaskModelWithId) {
     this.store.dispatch(taskUpdated({ task }));
   }
 }
