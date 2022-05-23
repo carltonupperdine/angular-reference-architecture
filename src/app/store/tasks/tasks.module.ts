@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
-import { TaskEffects } from './effects';
-import { TaskFacade } from './facade';
-import { taskReducer } from './reducer';
+import { TaskEffects } from './task.effects';
+import { TaskFacade } from './task.facade';
+import { taskReducer } from './task.reducer';
 
 @NgModule({
   declarations: [],

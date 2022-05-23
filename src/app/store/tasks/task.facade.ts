@@ -1,5 +1,5 @@
-import { selectAllTasks, selectTaskById } from './selectors';
-import { taskCompleted, taskUpdated, tasksLoadRequested } from './actions';
+import { selectAllTasks, selectTaskById } from './task.selectors';
+import { taskCompleted, taskUpdated, tasksLoadRequested } from './task.actions';
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';

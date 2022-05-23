@@ -1,15 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { RouterTestingModule } from '@angular/router/testing';
-import { TaskFacade } from '../store/tasks/facade';
+import { TaskFacade } from '../store/tasks/task.facade';
 import { TasksComponent } from './tasks.component';
+import { TestBed } from '@angular/core/testing';
 
 describe('TasksComponent', () => {
   let component: TasksComponent;
 
   beforeEach(async () => {
-    const facadeMock = jest.mock<TaskFacade>('../store/tasks/facade');
+    const facadeMock = jest.mock<TaskFacade>('../store/tasks/task.facade');
 
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],

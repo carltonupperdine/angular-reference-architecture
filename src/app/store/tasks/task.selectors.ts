@@ -3,7 +3,7 @@ import {
   createFeatureSelector,
   createSelector
 } from '@ngrx/store';
-import { State, taskAdapter } from './state';
+import { State, taskAdapter } from './task.state';
 
 import { Task } from 'src/app/tasks/task.model';
 
