@@ -121,7 +121,7 @@
           "builder": "@cypress/schematic:cypress",
           "options": {
             "devServerTarget": "reference-architecture:serve",
-            "watch": true,
+            "watch": false,
             "headless": true
           },
           "configurations": {
