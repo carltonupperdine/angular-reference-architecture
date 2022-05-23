@@ -2,36 +2,5 @@
 <app-task-form
   action="Create"
   [task]="this.model"
-  (submitted)="create()"
+  (submitted)="taskCreated($event)"
 ></app-task-form>
-<!-- <form (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill">
-    <mat-label>Title</mat-label>
-    <input matInput required [(ngModel)]="model.title" name="title" />
-  </mat-form-field>
-  <br />
-  <mat-form-field appearance="fill">
-    <mat-label>Description</mat-label>
-    <input
-      matInput
-      required
-      [(ngModel)]="model.description"
-      name="description"
-    />
-  </mat-form-field>
-  <br />
-  <mat-form-field appearance="fill">
-    <mat-label>Due Date</mat-label>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      [(ngModel)]="model.due"
-      name="due"
-    />
-    <mat-hint>DD/MM/YYYY</mat-hint>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <br />
-  <button mat-flat-button color="accent" type="submit">Create</button>
-</form> -->

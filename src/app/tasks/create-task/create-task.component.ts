@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { EMPTY_TASK } from '../constants';
 import { Router } from '@angular/router';
-import { TaskService } from '../task.service';
+import { TaskFacade } from '../../store/tasks';
+import { WritableTask } from '../shared/models';
 
 @Component({
   selector: 'app-create-task',
@@ -9,18 +9,12 @@ import { TaskService } from '../task.service';
   styleUrls: ['./create-task.component.scss']
 })
 export class CreateTaskComponent {
-  private readonly taskService: TaskService;
-  public router: Router;
+  model: WritableTask | undefined;
 
-  constructor(taskService: TaskService, router: Router) {
-    this.taskService = taskService;
-    this.router = router;
-  }
+  constructor(private facade: TaskFacade, private router: Router) {}
 
-  model = EMPTY_TASK;
-
-  create() {
-    this.taskService.create(this.model);
+  taskCreated(task: WritableTask) {
+    this.facade.create({ ...task, complete: false });
     this.router.navigate(['tasks']);
   }
 }

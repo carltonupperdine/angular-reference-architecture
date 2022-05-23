@@ -13,5 +13,5 @@
 
 <app-task-list
   [tasks]="(tasks$ | async) ?? []"
-  (taskCompleted)="(complete)"
+  (taskCompleted)="this.complete($event)"
 ></app-task-list>

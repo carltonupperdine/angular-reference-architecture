@@ -1,7 +1,7 @@
-import { BehaviorSubject, Observable } from 'rxjs';
-import { CreateTaskModel } from './create-task/create-task-model';
+import { BehaviorSubject, Observable, filter, map, of } from 'rxjs';
+import { Task, TaskModel } from './shared/models';
+
 import { Injectable } from '@angular/core';
-import { Task } from './task.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class TaskService {
 
   private tasks$ = new BehaviorSubject(this.tasks);
 
-  getAll$(): Observable<Task[]> {
+  getAll(): Observable<Task[]> {
     return this.tasks$.asObservable();
   }
 
@@ -39,15 +39,12 @@ export class TaskService {
     return this.tasks.find((t) => t.id === id);
   }
 
-  create(model: CreateTaskModel) {
-    const task: Task = {
+  create(model: TaskModel): Observable<Task> {
+    return of({
+      ...model,
       id: this.getPrimaryKey(),
-      title: model.title,
-      description: model.description,
-      due: model.due,
       complete: false
-    };
-    this.tasks$.next([...this.tasks, task]);
+    });
   }
 
   update(task: Task) {
@@ -58,7 +55,7 @@ export class TaskService {
     });
   }
 
-  complete(id: number) {
+  complete(id: number): void {
     this.tasks$.subscribe((tasks) => {
       const idx = tasks.findIndex((task) => task.id === id);
       tasks[idx].complete = true;

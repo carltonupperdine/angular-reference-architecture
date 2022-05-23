@@ -1,6 +1,4 @@
-import { Task } from './task.model';
-
-export const EMPTY_TASK: Task = {
+export const EMPTY_TASK = {
   id: 0,
   title: '',
   description: '',

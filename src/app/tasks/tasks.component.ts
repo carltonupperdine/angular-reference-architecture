@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
+
 import { Router } from '@angular/router';
-import { Task } from './task.model';
-import { TaskService } from './task.service';
+import { TaskFacade } from '../store/tasks';
 
 @Component({
   selector: 'app-tasks',
@@ -10,15 +9,11 @@ import { TaskService } from './task.service';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent {
-  tasks$: Observable<Task[]>;
-  router: Router;
+  tasks$ = this.facade.tasks$;
 
-  constructor(private taskService: TaskService, router: Router) {
-    this.tasks$ = taskService.getAll$();
-    this.router = router;
-  }
+  constructor(public router: Router, private facade: TaskFacade) {}
 
   complete(id: number) {
-    this.taskService.complete(id);
+    this.facade.complete(id);
   }
 }
