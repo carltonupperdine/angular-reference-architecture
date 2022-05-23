@@ -1,23 +1,23 @@
 <form (ngSubmit)="submit()">
   <mat-form-field appearance="fill">
     <mat-label>Title</mat-label>
-    <input matInput [formControl]="title" />
+    <input matInput [formControl]="title" id="title" />
   </mat-form-field>
   <br />
   <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
-    <input matInput [formControl]="description" />
+    <input matInput [formControl]="description" id="description" />
   </mat-form-field>
   <br />
   <mat-form-field appearance="fill">
     <mat-label>Due Date</mat-label>
-    <input matInput [matDatepicker]="picker" [formControl]="due" />
+    <input matInput [matDatepicker]="picker" [formControl]="due" id="due" />
     <mat-hint>DD/MM/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <br />
-  <button mat-flat-button color="accent" type="submit">
+  <button mat-flat-button color="accent" type="submit" id="actionButton">
     {{ action }}
   </button>
 </form>
