@@ -1,8 +1,9 @@
-import { taskCompleted, tasksLoadRequested } from './actions';
+import { selectAllTasks, selectTaskById } from './selectors';
+import { taskCompleted, taskUpdated, tasksLoadRequested } from './actions';
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectAllTasks } from './selectors';
+import { Task } from 'src/app/tasks/task.model';
 
 @Injectable()
 export class TaskFacade {
@@ -12,7 +13,15 @@ export class TaskFacade {
     this.store.dispatch(tasksLoadRequested());
   }
 
+  find(id: number) {
+    return this.store.select(selectTaskById(id));
+  }
+
   complete(id: number) {
     this.store.dispatch(taskCompleted({ id: id }));
+  }
+
+  update(task: Task) {
+    this.store.dispatch(taskUpdated({ task }));
   }
 }

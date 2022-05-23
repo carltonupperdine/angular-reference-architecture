@@ -11,5 +11,8 @@ export const taskReducer = createReducer(
   ),
   on(TaskActions.taskCompleted, (state, { id }) =>
     taskAdapter.updateOne({ id, changes: { complete: true } }, state)
+  ),
+  on(TaskActions.taskUpdated, (state, { task }) =>
+    taskAdapter.updateOne({ id: task.id, changes: { ...task } }, state)
   )
 );

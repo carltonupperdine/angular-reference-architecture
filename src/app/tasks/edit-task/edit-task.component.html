@@ -1,6 +1,6 @@
-<h1>Editing Task {{ task.id }}</h1>
+<h1>{{ this.title$ | async }}</h1>
 <app-task-form
-  [task]="this.task"
+  [task]="this.task$ | async"
   action="Update"
   (submitted)="update()"
 ></app-task-form>

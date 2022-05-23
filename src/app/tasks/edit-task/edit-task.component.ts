@@ -1,41 +1,30 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { EMPTY_TASK } from '../constants';
-import { Task } from '../task.model';
-import { TaskService } from '../task.service';
+import { map, mergeMap } from 'rxjs';
+
+import { Component } from '@angular/core';
+import { TaskFacade } from '../../store/tasks';
 
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
   styleUrls: ['./edit-task.component.scss']
 })
-export class EditTaskComponent implements OnInit {
-  private router: Router;
-  private taskService: TaskService;
-  private route: ActivatedRoute;
+export class EditTaskComponent {
+  id$ = this.route.params.pipe(map((params) => +params['id']));
+  task$ = this.id$.pipe(mergeMap((id) => this.facade.find(id)));
+  title$ = this.task$.pipe(map((task) => `Editing Task ${task?.id}`));
 
-  task: Task = EMPTY_TASK;
-
-  constructor(taskService: TaskService, route: ActivatedRoute, router: Router) {
-    this.taskService = taskService;
-    this.route = route;
-    this.router = router;
-  }
-
-  ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
-    const task = this.taskService.get(id);
-
-    if (!task) {
-      this.router.navigate(['tasks']);
-      return;
-    }
-
-    this.task = task;
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private facade: TaskFacade
+  ) {}
 
   update() {
-    this.taskService.update(this.task);
-    this.router.navigate(['tasks']);
+    this.task$.subscribe((task) => {
+      if (!task) return;
+      this.facade.update(task);
+      this.router.navigate(['tasks']);
+    });
   }
 }

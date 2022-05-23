@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+
 import { EMPTY_TASK } from '../../constants';
 import { EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -11,7 +12,7 @@ import { Task } from '../../task.model';
 })
 export class TaskFormComponent implements OnInit {
   @Input() action: string = 'Create';
-  @Input() task: Task = EMPTY_TASK;
+  @Input() task: Task | null | undefined;
   @Output() submitted = new EventEmitter<Task>();
 
   title = new FormControl('');
@@ -19,9 +20,13 @@ export class TaskFormComponent implements OnInit {
   due = new FormControl();
 
   submit() {
-    this.task.title = this.title.value;
-    this.task.description = this.description.value;
-    this.task.due = this.due.value;
+    if (!this.task) return;
+    this.task = {
+      ...this.task,
+      title: this.title.value,
+      description: this.description.value,
+      due: this.due.value
+    };
     this.submitted.emit(this.task);
   }
 
