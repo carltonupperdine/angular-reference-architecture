@@ -17,7 +17,13 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <br />
-  <button mat-flat-button color="accent" type="submit" id="actionButton">
+  <button
+    mat-flat-button
+    color="accent"
+    type="submit"
+    id="actionButton"
+    [disabled]="this.task?.complete"
+  >
     {{ action }}
   </button>
 </form>

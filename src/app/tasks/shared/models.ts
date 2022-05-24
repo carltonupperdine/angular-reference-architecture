@@ -10,6 +10,7 @@ export interface WritableTask {
   title: string;
   description: string;
   due?: Date;
+  complete?: boolean;
 }
 
 export interface ModifiedTask extends WritableTask {
