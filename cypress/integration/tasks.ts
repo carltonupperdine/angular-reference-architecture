@@ -43,7 +43,7 @@ describe('Tasks', () => {
       cy.get('#actionButton').contains('Create').click();
       cy.get('table')
         .get('tr.mat-row')
-        .first()
+        .last()
         .contains('Test Task Description');
     });
   });
@@ -52,7 +52,7 @@ describe('Tasks', () => {
     before(() => {
       cy.get('table')
         .get('tr.mat-row')
-        .last()
+        .first()
         .children('td')
         .contains('1')
         .click();
@@ -83,12 +83,12 @@ describe('Tasks', () => {
     });
 
     it('Should show the updated information in the Task table', () => {
-      cy.get('table').get('tr.mat-row').last().contains('Task #10');
+      cy.get('table').get('tr.mat-row').first().contains('Task #10');
       cy.get('table')
         .get('tr.mat-row')
-        .last()
+        .first()
         .contains('My first task has been edited');
-      cy.get('table').get('tr.mat-row').last().contains('12/12/2022');
+      cy.get('table').get('tr.mat-row').first().contains('12/12/2022');
     });
   });
 });
